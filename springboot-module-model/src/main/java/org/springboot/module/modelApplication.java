@@ -1,8 +1,10 @@
 package org.springboot.module;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@MapperScan("org.springboot.module.mapper")
 @SpringBootApplication
 public class modelApplication {
 	public static void main(String[] args) {
