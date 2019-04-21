@@ -25,7 +25,7 @@
 		<!-- jpa -->
 		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-jpa</artifactId> 
 			</dependency> -->
-			
+
 		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -40,7 +40,7 @@
 		<!-- mysql -->
 		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
 			</dependency> -->
-			
+
 		<!-- oracle -->
 		<dependency>
 			<groupId>com.oracle</groupId>
@@ -48,4 +48,18 @@
 			<version>11.2.0.3</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- 创建非可执行的jar since error from parent project package error: 程序包org.springboot.module.dao不存在 -->
+				<configuration>
+					<classifier>exec</classifier>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

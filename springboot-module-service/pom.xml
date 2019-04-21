@@ -36,4 +36,17 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- 创建非可执行的jar since error from parent project package error: 程序包org.springboot.module.service不存在 -->
+				<configuration>
+					<classifier>exec</classifier>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -1,7 +1,7 @@
 package org.springboot.module.service.impl;
 
-import org.springboot.module.dao.IUserDao;
-import org.springboot.module.dao.UserMapper;
+import org.springboot.module.mapper.IUserDao;
+import org.springboot.module.mapper.UserMapper;
 import org.springboot.module.model.User;
 import org.springboot.module.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

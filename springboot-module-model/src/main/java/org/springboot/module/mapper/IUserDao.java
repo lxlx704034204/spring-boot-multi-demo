@@ -1,4 +1,4 @@
-package org.springboot.module.dao;
+package org.springboot.module.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
