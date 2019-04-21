@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.springboot.module.mapper.SpUserMapper">
+
+	<!-- 定义结果集映射对象 -->
+ 	<resultMap type="user" id="spUserMap">
+		<id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="USER_NAME" property="userName"
+			jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password"
+			jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="BIRTHDAY" property="birthday"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<!-- 
+		1、使用select标签定义调用存储过程
+		2、statementType="CALLABLE":表示要调用存储过程
+		3、{call procedure_name(params)}
+	-->
+	
+	<select id="selectUserAll" parameterType="HashMap" statementType="CALLABLE">
+		call sp_user_select(#{users, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=spUserMap})
+	</select>
+
+	<select id="selectUserByPage" parameterType="OraclePage" statementType="CALLABLE">
+		call sp_user_page(
+		#{start, mode=IN, jdbcType=INTEGER},
+		#{size, mode=IN, jdbcType=INTEGER},
+		#{allCount, mode=OUT, jdbcType=INTEGER},
+		#{lists,mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=spUserMap}
+		)
+	</select>
+	
+	<select id="selectUserByUserId" parameterType="User" statementType="CALLABLE">
+		{call sp_select_user_by_id(
+		#{userId, mode=IN},
+		#{userName, mode=OUT, jdbcType=VARCHAR},
+		#{password, mode=OUT, jdbcType=VARCHAR},
+		#{phone, mode=OUT, jdbcType=VARCHAR},
+		#{address, mode=OUT, jdbcType=VARCHAR},
+		#{birthday, mode=OUT, jdbcType=TIMESTAMP}
+		)}
+	</select>
+
+	<insert id="addUser" parameterType="User" statementType="CALLABLE">
+		{call sp_user_add(
+		#{userId, mode=IN},
+		#{userName, mode=IN, jdbcType=VARCHAR},
+		#{password, mode=IN, jdbcType=VARCHAR},
+		#{phone, mode=IN, jdbcType=VARCHAR},
+		#{address, mode=IN, jdbcType=VARCHAR},
+		#{birthday, mode=IN, jdbcType=TIMESTAMP}
+		)}
+	</insert>
+	
+	<update id="updateUser" parameterType="User" statementType="CALLABLE">
+	{call sp_user_update(
+		#{userId, mode=IN},
+		#{userName, mode=IN, jdbcType=VARCHAR},
+		#{password, mode=IN, jdbcType=VARCHAR},
+		#{phone, mode=IN, jdbcType=VARCHAR},
+		#{address, mode=IN, jdbcType=VARCHAR},
+		#{birthday, mode=IN, jdbcType=TIMESTAMP}
+		)}
+	</update>
+
+		
+</mapper>

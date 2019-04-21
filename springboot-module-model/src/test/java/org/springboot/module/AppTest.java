@@ -6,7 +6,7 @@ public class AppTest extends BaseUnitTest {
 
 	@Test
 	public void test() {
-		System.out.println("envirement is setting well.");
+		System.out.println("The environment is running well.");
 	}
 
 }
