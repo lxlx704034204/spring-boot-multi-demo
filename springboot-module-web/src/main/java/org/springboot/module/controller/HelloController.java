@@ -15,44 +15,44 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "swagger test api demo")
+@Api(tags = "a restful api genreated by swagger")
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/hello")
 public class HelloController {
 
 	@Autowired
 	private IUserService userService;
 
 	@ApiOperation(value = "api /hello", notes = "this is one api about say hello")
-	@GetMapping(value = "/hello")
+	@GetMapping(value = "")
 	public String hello() {
 		System.out.println("rest request hello...");
 		return "hello world";
 	}
 
-	@ApiOperation(value = "user/{id}", notes = "this is one api about load user")
-	@GetMapping(value = "user/{id}")
+	@ApiOperation(value = "/{id}", notes = "this is one api about load entity")
+	@GetMapping(value = "/{id}")
 	public User load(@PathVariable String id) {
 		System.out.println("load user by id: " + id);
 		return userService.findById(id);
 	}
 
-	@ApiOperation(value = "user/{id}", notes = "this is one api about delete user")
-	@DeleteMapping(value = "user/{id}")
+	@ApiOperation(value = "hello/{id}", notes = "this is one api about delete entity")
+	@DeleteMapping(value = "/{id}")
 	public String delete(@PathVariable String id) {
 		System.out.println("load user by id: " + id);
 		return "delete sucess";
 	}
 
-	@ApiOperation(value = "user/add", notes = "this is one api about save user")
-	@PostMapping(value = "user/add")
+	@ApiOperation(value = "hello/add", notes = "this is one api about save entity")
+	@PostMapping(value = "/add")
 	public User add(@RequestBody User user) {
 		System.out.println("user: " + user);
 		return user;
 	}
 
-	@ApiOperation(value = "user/update", notes = "this is one api about update user")
-	@PutMapping(value = "user/update")
+	@ApiOperation(value = "hello/update", notes = "this is one api about update entity")
+	@PutMapping(value = "/update")
 	public User update(@RequestBody User user) {
 		System.out.println("user: " + user);
 		return user;

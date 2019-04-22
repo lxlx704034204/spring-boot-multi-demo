@@ -25,7 +25,7 @@
 	-->
 	
 	<select id="selectUserAll" parameterType="HashMap" statementType="CALLABLE">
-		call sp_user_select(#{users, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=spUserMap})
+		call sp_user_select(#{out_entities, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=spUserMap})
 	</select>
 
 	<select id="selectUserByPage" parameterType="OraclePage" statementType="CALLABLE">

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.springboot.module.BaseUnitTest;
+import org.springboot.module.common.BaseConstant;
 import org.springboot.module.model.OraclePage;
 import org.springboot.module.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,11 @@ public class SpUserMapperTest extends BaseUnitTest {
 	public void selectUserAllTest() {
 
 		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("users", OracleTypes.CURSOR);
+		param.put(BaseConstant.OUT_ENTITIES, OracleTypes.CURSOR);
 		userMapper.selectUserAll(param);
 
 		@SuppressWarnings("unchecked")
-		List<User> users = (List<User>) param.get("users");
+		List<User> users = (List<User>) param.get(BaseConstant.OUT_ENTITIES);
 		System.out.println("user size is " + users.size());
 		for (User user : users) {
 			System.out.println(user);
