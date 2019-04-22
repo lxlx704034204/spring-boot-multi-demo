@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springboot.module.common.BaseConstant;
 import org.springboot.module.mapper.SpUserMapper;
+import org.springboot.module.model.OraclePage;
 import org.springboot.module.model.User;
 import org.springboot.module.service.ISPUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,13 @@ public class SPUserServiceImpl implements ISPUserService {
 		// TODO
 		System.out.println("TODO delete user by userId...");
 
+	}
+
+	@Override
+	public OraclePage<User> findUsersByPage(OraclePage<User> page) {
+		System.out.println("SPUserServiceImpl.findUsersByPage()");
+		userMapper.selectUserByPage(page);
+		return page;
 	}
 
 }

@@ -3,6 +3,7 @@ package org.springboot.module.controller;
 import java.util.Date;
 import java.util.List;
 
+import org.springboot.module.model.OraclePage;
 import org.springboot.module.model.User;
 import org.springboot.module.service.ISPUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -79,6 +81,18 @@ public class UserController {
 		System.out.println("UserController.testUser()");
 		userService.deleteUserById(userId);
 		return "delete user success";
+	}
+
+	@ApiOperation(value = "/page", notes = "this is one api about page user")
+	@GetMapping(value = "/page")
+	public OraclePage<User> findUsersByPage(@RequestParam(defaultValue = "1") Integer pageIndex,
+			@RequestParam(defaultValue = "5") Integer pageSize) {
+		System.out.println("UserController.findUsersByPage()");
+		OraclePage<User> page = new OraclePage<>();
+		page.setStart(1);
+		page.setSize(5);
+		userService.findUsersByPage(page);
+		return page;
 	}
 
 }
