@@ -12,10 +12,16 @@
 	<artifactId>springboot-module-web</artifactId>
 	<name>springboot-module-web</name>
 	<url>http://maven.apache.org</url>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
 	<dependencies>
+			<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.springboot.module</groupId>
 			<artifactId>springboot-module-service</artifactId>
@@ -25,15 +31,13 @@
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
-			<version>2.5.0</version>
 		</dependency>
 		<!-- swagger-ui -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.5.0</version>
 		</dependency>
-		<!-- JSON-->
+		<!-- JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
