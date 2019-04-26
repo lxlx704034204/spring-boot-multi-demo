@@ -72,7 +72,7 @@
 	
 	<select id="selectUserPackageDemo" parameterType="HashMap" statementType="CALLABLE">
 		call PKG_USER.LISTUSERS(
-		#{uId, mode=IN, jdbcType=INTEGER},
+		#{uId, mode=IN, jdbcType=VARCHAR},
 		#{total, mode=OUT, jdbcType=INTEGER},
 		#{lists, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=spUserMap}
 		)

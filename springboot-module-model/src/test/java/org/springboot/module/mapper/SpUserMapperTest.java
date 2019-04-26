@@ -103,7 +103,16 @@ public class SpUserMapperTest extends BaseUnitTest {
 		for (String key : params.keySet()) {
 			System.out.println("key="+key);
 			System.out.println("value class="+params.get(key).getClass());
-			System.out.println(params.get(key));
+			if(params.get(key) instanceof List) {
+				@SuppressWarnings("unchecked")
+				List<User> users =  (List<User>) params.get(key);
+				for (User user : users) {
+					System.out.println(user);
+				}
+				
+			}else {
+				System.out.println(params.get(key));
+			}
 		}
 	}
 
