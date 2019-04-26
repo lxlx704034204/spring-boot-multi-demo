@@ -8,7 +8,7 @@
   CREATE OR REPLACE PACKAGE BODY "CCH"."PKG_USER" 
 AS
 PROCEDURE listUsers(
-    uId IN INTEGER,
+    uId IN VARCHAR2,
     total OUT INTEGER,
     userList OUT userListCursor)
 AS
@@ -17,7 +17,7 @@ BEGIN
   -- TODO: PROCEDURE PKG_USER.listUsers所需的实施
     total:=0;
    
-  IF uId=0 THEN
+  IF uId is NULL THEN
   	SELECT COUNT(1) INTO total FROM T_User;
     OPEN userList FOR SELECT * FROM T_User;
   ELSE

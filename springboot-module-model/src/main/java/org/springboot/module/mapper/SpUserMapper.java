@@ -18,5 +18,7 @@ public interface SpUserMapper {
 	public void addUser(User user);
 	
 	public void updateUser(User user);
+	
+	public void selectUserPackageDemo(Map<String,Object> params);
 
 }

@@ -69,6 +69,14 @@
 		#{birthday, mode=IN, jdbcType=TIMESTAMP}
 		)}
 	</update>
+	
+	<select id="selectUserPackageDemo" parameterType="HashMap" statementType="CALLABLE">
+		call PKG_USER.LISTUSERS(
+		#{uId, mode=IN, jdbcType=INTEGER},
+		#{total, mode=OUT, jdbcType=INTEGER},
+		#{lists, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=spUserMap}
+		)
+	</select>
 
 		
 </mapper>

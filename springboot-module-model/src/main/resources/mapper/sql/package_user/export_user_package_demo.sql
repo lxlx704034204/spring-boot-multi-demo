@@ -13,7 +13,7 @@ IS
   ref
   CURSOR;
     PROCEDURE listUsers(
-        uId IN INTEGER,
+        uId IN VARCHAR2,
         total OUT INTEGER,
         userList OUT userListCursor);
   END PKG_USER;

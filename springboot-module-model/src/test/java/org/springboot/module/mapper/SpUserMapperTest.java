@@ -88,5 +88,23 @@ public class SpUserMapperTest extends BaseUnitTest {
 		
 		System.out.println(user);
 	}
+	
+	@Test
+	public void selectUserPackageDemo() {
+		Map<String,Object> params = new HashMap<>();
+		//params.put("uId", null); //error
+		//params.put("uId", "10001");
+		params.put("uId", "");
+		params.put("total", 0);
+		params.put("lists", null);
+		
+		userMapper.selectUserPackageDemo(params);
+		
+		for (String key : params.keySet()) {
+			System.out.println("key="+key);
+			System.out.println("value class="+params.get(key).getClass());
+			System.out.println(params.get(key));
+		}
+	}
 
 }
