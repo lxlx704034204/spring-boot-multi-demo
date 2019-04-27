@@ -18,6 +18,11 @@
 			type="org.springboot.module.model.OraclePage" />
 	</typeAliases>
 
+	<typeHandlers>
+		<typeHandler
+			handler="org.springboot.module.typehandler.UserArrayTypeHandler" javaType="ArrayList" />
+	</typeHandlers>
+
 	<environments default="dev">
 		<environment id="dev">
 			<transactionManager type="JDBC" />

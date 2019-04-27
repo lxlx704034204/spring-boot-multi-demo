@@ -55,8 +55,10 @@ public class DBConnectionTest {
 		Reader reader = Resources.getResourceAsReader(resource);
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		String userName = sqlSession.getConnection().getMetaData().getUserName();
+		
+		String userName = sqlSession.getConnection().getMetaData().getUserName();		
 		System.out.println("login user: " + userName);
+		
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		User user = mapper.selectById("10001");
 		System.out.println("user(10001):" + user);
@@ -65,6 +67,7 @@ public class DBConnectionTest {
 		user.setUserId("10002");
 		spUserMapper.selectUserByUserId(user);
 		System.out.println("user(10002): " + user);
+		
 		sqlSession.close();
 	}
 

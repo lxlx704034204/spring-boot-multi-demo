@@ -20,5 +20,7 @@ public interface SpUserMapper {
 	public void updateUser(User user);
 	
 	public void selectUserPackageDemo(Map<String,Object> params);
+	
+	public void batchAddUser(Map<String,Object> params);
 
 }
