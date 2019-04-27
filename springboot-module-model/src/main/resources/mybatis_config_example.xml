@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Integer" type="java.lang.Integer" />
+		<typeAlias alias="Long" type="java.lang.Long" />
+		<typeAlias alias="HashMap" type="java.util.HashMap" />
+		<typeAlias alias="LinkedHashMap"
+			type="java.util.LinkedHashMap" />
+		<typeAlias alias="ArrayList" type="java.util.ArrayList" />
+		<typeAlias alias="LinkedList" type="java.util.LinkedList" />
+
+		<typeAlias alias="User"
+			type="org.springboot.module.model.User" />
+		<typeAlias alias="OraclePage"
+			type="org.springboot.module.model.OraclePage" />
+	</typeAliases>
+
+	<environments default="dev">
+		<environment id="dev">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver"
+					value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url"
+					value="jdbc:oracle:thin:@localhost:1521:cchdba" />
+				<property name="username" value="cch" />
+				<property name="password" value="root" />
+			</dataSource>
+		</environment>
+	</environments>
+
+
+	<mappers>
+		<mapper resource="mapper/mybatis/UserMapper.xml" />
+		<mapper resource="mapper/mybatis/SpUserMapper.xml" />
+	</mappers>
+
+
+	<!-- mapper 单个注册（mapper如果多的话，不太可能用这种方式） resource：引用类路径下的文件 url：引用磁盘路径下的资源 
+		class，引用接口 package 批量注册（基本上使用这种方式） name：mapper接口与mapper.xml所在的包名 -->
+
+	<!-- 使用相对于类路径的资源引用 -->
+	<!-- <mappers> <mapper resource="org/mybatis/aaa/AuthorMapper.xml"/> </mappers> -->
+
+	<!-- 使用完全限定资源定位符（URL） -->
+	<!-- <mappers> <mapper url="file:///var/mappers/AuthorMapper.xml"/> </mappers> -->
+
+	<!-- 使用映射器接口实现类的完全限定类名 -->
+	<!-- <mappers> <mapper class="org.mybatis.aaa.AuthorMapper"/> </mappers> -->
+
+	<!-- 将包内的映射器接口实现全部注册为映射器 -->
+	<!-- <mappers> <package name="org.mybatis.aaa"/> </mappers> -->
+
+</configuration>

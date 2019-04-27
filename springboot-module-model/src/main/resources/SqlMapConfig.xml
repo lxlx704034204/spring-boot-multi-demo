@@ -11,7 +11,7 @@
 		<typeAlias alias="ArrayList" type="java.util.ArrayList" />
 		<typeAlias alias="LinkedList" type="java.util.LinkedList" />
 		
-		<typeAlias alias="User" type=" org.springboot.module.model.User" />
+		<typeAlias alias="User" type="org.springboot.module.model.User" />
 		<typeAlias alias="OraclePage" type="org.springboot.module.model.OraclePage" />
 	</typeAliases>
 	
