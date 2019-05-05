@@ -30,8 +30,8 @@
 
 	<select id="selectUserByPage" parameterType="OraclePage" statementType="CALLABLE">
 		call sp_user_page(
-		#{start, mode=IN, jdbcType=INTEGER},
-		#{size, mode=IN, jdbcType=INTEGER},
+		#{curPage, mode=IN, jdbcType=INTEGER},
+		#{pageSize, mode=IN, jdbcType=INTEGER},
 		#{allCount, mode=OUT, jdbcType=INTEGER},
 		#{lists,mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=spUserMap}
 		)

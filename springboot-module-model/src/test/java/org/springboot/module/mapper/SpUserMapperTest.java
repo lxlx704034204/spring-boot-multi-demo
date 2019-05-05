@@ -39,8 +39,8 @@ public class SpUserMapperTest extends BaseUnitTest {
 		OraclePage<User> page = new OraclePage<>(2, 5);
 		userMapper.selectUserByPage(page);
 
-		System.out.println("page index: " + page.getStart());
-		System.out.println("page size: " + page.getSize());
+		System.out.println("page index: " + page.getCurPage());
+		System.out.println("page size: " + page.getPageSize());
 		System.out.println("allCount: " + page.getAllCount());
 		System.out.println("lists size: " + page.getLists().size());
 

@@ -5,15 +5,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @ComponentScan(basePackages = { "org.springboot.module" })
 @MapperScan("org.springboot.module.mapper")
 @SpringBootApplication
 public class WebApplication {
 	public static void main(String[] args) {
-		System.out.println("web application begin start...");
 
+		log.info("### web application begin start...");
+		
 		SpringApplication.run(WebApplication.class, args);
 
-		System.out.println("web application is running...");
+		log.info("### web application is running...");
 	}
 }

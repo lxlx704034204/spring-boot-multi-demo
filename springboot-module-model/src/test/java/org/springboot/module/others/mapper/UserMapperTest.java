@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.springboot.module.mapper.SpUserMapper;
 import org.springboot.module.model.TestEntity;
-import org.springboot.module.model.User;
 import org.springboot.module.others.BaseJunit;
 import org.springboot.module.others.MyBatisConnectUtil;
 
