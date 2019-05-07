@@ -1,8 +1,13 @@
 package org.springboot.module.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +17,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -38,10 +47,13 @@ public class WebSecuerityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
+		http.cors().and().csrf().disable().authorizeRequests().anyRequest().authenticated().and().formLogin().and()
+				.httpBasic();
+		
 //		super.configure(http);
 
 		// http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-		http.cors().and().csrf().disable();// 关闭csrf
+		// http.cors().and().csrf().disable();// 关闭csrf
 //				.authorizeRequests()
 //				.antMatchers("/orders/**").hasRole("USER")    //用户权限
 //			    .antMatchers("/users/**").hasRole("ADMIN")    //管理员权限
@@ -83,14 +95,29 @@ public class WebSecuerityConfig extends WebSecurityConfigurerAdapter {
 	 * 
 	 * @return
 	 */
-	//@Bean
-//	CorsConfigurationSource corsConfigurationSource() {
-//		CorsConfiguration configuration = new CorsConfiguration();
-//		configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000","null"));
-//		configuration.setAllowedMethods(Arrays.asList("*"));
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowCredentials(true);
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+		configuration.setAllowedMethods(Arrays.asList("POST", "GET"));
+		configuration.setAllowedHeaders(Arrays.asList("*"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
+
+//	@Bean
+//	public CorsFilter corsFilter() {
 //		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//		source.registerCorsConfiguration("/**", configuration);
-//		return source;
+//		CorsConfiguration config = new CorsConfiguration();
+//		config.setAllowCredentials(true);
+//		config.addAllowedOrigin("http://localhost:3000");
+//		config.addAllowedHeader(CorsConfiguration.ALL);
+//		config.addAllowedMethod(CorsConfiguration.ALL);
+//		source.registerCorsConfiguration("/**", config);
+//		CorsFilter corsFilter = new CorsFilter(source);
+//		return corsFilter;
 //	}
 
 	/**
@@ -98,14 +125,15 @@ public class WebSecuerityConfig extends WebSecurityConfigurerAdapter {
 	 * 
 	 * @return
 	 */
-	//@Bean
-//	public CorsFilter corsFilter() {
-//	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//	    CorsConfiguration config = new CorsConfiguration();
-//	    config.setAllowCredentials(true);	
-//	    config.addAllowedOrigin("http://localhost:3000");
-//	    config.addAllowedMethod("*");
-//	    source.registerCorsConfiguration("/**", config); // CORS 配置对所有接口都有效
-//	    return new CorsFilter(source);
-//	}
+	// @Bean
+	public CorsFilter corsFilter() {
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowCredentials(true);
+		config.addAllowedOrigin("http://localhost:3000");
+		config.addAllowedMethod("*");
+		config.addAllowedHeader("*");
+		source.registerCorsConfiguration("/**", config); // CORS 配置对所有接口都有效
+		return new CorsFilter(source);
+	}
 }
