@@ -79,9 +79,11 @@
 	</select>
 	
 	<select id="batchAddUser" parameterType="HashMap" statementType="CALLABLE">
-		call PKG_TYPETEST.SP_BATCH_ADD(
+		call PKG_SELF_TYPE_DEMO.sp_batch_add(
 		#{iUsers, mode=IN, jdbcType=ARRAY, javaType=List, typeHandler=org.springboot.module.typehandler.UserArrayTypeHandler},
-		#{vCount, mode=OUT, jdbcType=INTEGER}
+		#{vCount, mode=OUT, jdbcType=INTEGER},
+		#{vStr, mode=OUT, jdbcType=VARCHAR},
+		#{vStr2, mode=OUT, jdbcType=VARCHAR}
 		)
 	</select>
 

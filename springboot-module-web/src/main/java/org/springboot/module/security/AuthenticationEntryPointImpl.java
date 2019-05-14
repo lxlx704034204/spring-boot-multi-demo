@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Service("authenticationEntryPointImpl")
-public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
+public class AuthenticationEntryPointImpl extends Http403ForbiddenEntryPoint {
 
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {
-		log.info("### SC_UNAUTHORIZED:" + authException.getMessage());
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
+		System.out.println("### AuthenticationEntryPointImpl.commence()");
+		super.commence(request, response, authException);
 	}
 
 }

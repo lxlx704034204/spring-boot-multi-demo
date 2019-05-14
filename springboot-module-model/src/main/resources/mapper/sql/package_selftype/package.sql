@@ -1,32 +1,17 @@
 --------------------------------------------------------
---  文件已创建 - 星期六-四月-27-2019   
---------------------------------------------------------
---------------------------------------------------------
---  DDL for Package PKG_TYPETEST
+--  DDL for Package PKG_SELF_TYPE_DEMO
 --------------------------------------------------------
 
-  CREATE OR REPLACE PACKAGE "CCH"."PKG_TYPETEST" 
-AS
-  /* TODO enter package declarations (types, exceptions, methods etc) here */
-  ---自定义数据类型self_user
-TYPE s_u
-IS
-  RECORD
-  (
-    id   NUMBER,
-    name VARCHAR2(30) );
-  ---根据自定义数据类型self_user创建一个集合self_user_array
-TYPE s_u_ary
-IS
-  TABLE OF s_u INDEX BY BINARY_INTEGER;
-  --array(20) OF self_user;
-  --定义一个存储过程
+  CREATE OR REPLACE PACKAGE "CCH"."PKG_SELF_TYPE_DEMO" AS 
+
+    --定义一个测试存储过程
   PROCEDURE sp_batch_add(
-      i_users IN s_u_ary,
-      v_num OUT INTEGER);
-  --定义一个测试的存储过程
-  PROCEDURE sp_batch_add_test(
-      i_num IN INTEGER);
-END PKG_typetest;
+      i_users IN SELF_TABLE_TYPE,
+      v_num OUT INTEGER,
+      v_str OUT VARCHAR,
+      v_str2 OUT VARCHAR2
+      );
+      
+END PKG_SELF_TYPE_DEMO;
 
 /
