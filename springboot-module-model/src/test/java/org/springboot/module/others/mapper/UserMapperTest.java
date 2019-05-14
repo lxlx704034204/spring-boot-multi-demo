@@ -51,8 +51,9 @@ public class UserMapperTest extends BaseJunit {
 			System.out.println("params.size() after is: " + params.size());
 
 			for (String key : params.keySet()) {
-				System.out.println(key + ": " + params.get(key));
+				System.out.println(key + ": " + params.get(key).getClass().getName());
 			}
+			
 		} catch (Exception e) {
 			System.err.println("error:" + e.getMessage());
 		}

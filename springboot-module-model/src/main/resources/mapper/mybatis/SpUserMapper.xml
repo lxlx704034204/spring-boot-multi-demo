@@ -81,9 +81,24 @@
 	<select id="batchAddUser" parameterType="HashMap" statementType="CALLABLE">
 		call PKG_SELF_TYPE_DEMO.sp_batch_add(
 		#{iUsers, mode=IN, jdbcType=ARRAY, javaType=List, typeHandler=org.springboot.module.typehandler.UserArrayTypeHandler},
-		#{vCount, mode=OUT, jdbcType=INTEGER},
-		#{vStr, mode=OUT, jdbcType=VARCHAR},
-		#{vStr2, mode=OUT, jdbcType=VARCHAR}
+		#{vCount, mode=OUT, javaType=Integer, jdbcType=INTEGER},
+		<!-- #{vCount, mode=OUT, jdbcType=INTEGER}, -->
+		#{vStr, mode=OUT, javaType=String, jdbcType=VARCHAR},
+		<!-- #{vStr, mode=OUT, jdbcType=VARCHAR}, -->
+		#{vStr2, mode=OUT, javaType=String, jdbcType=VARCHAR},
+		#{vBool, mode=OUT, jdbcType=VARCHAR},
+<!-- 		#{vTimeStamp, mode=OUT, jdbcType=TIMESTAMP}, -->
+		#{vTimeStamp, mode=OUT,javaType=java.sql.Timestamp, jdbcType=TIMESTAMP},
+		#{vDate, mode=OUT, javaType=java.sql.Date, jdbcType=DATE},
+<!-- 		#{vDate, mode=OUT, javaType=java.util.Date, jdbcType=DATE}, -->
+<!-- 		#{vDate, mode=OUT, jdbcType=DATE}, -->
+<!-- 		#{vLong, mode=OUT, jdbcType=LONGVARCHAR}, -->
+<!-- 		#{vLong, mode=OUT, javaType=Object, jdbcType=LONGVARCHAR}, -->
+<!-- 		#{vLong, mode=OUT, javaType=java.lang.Long, jdbcType=LONGVARCHAR}, -->
+		#{vLong, mode=OUT, javaType=Long, jdbcType=LONGVARCHAR},
+<!-- 		#{vFloat, mode=OUT, javaType=java.lang.Float, jdbcType=VARCHAR} -->
+<!-- 		#{vFloat, mode=OUT, javaType=Float, jdbcType=VARCHAR} -->
+		#{vFloat, mode=OUT, jdbcType=VARCHAR}
 		)
 	</select>
 
