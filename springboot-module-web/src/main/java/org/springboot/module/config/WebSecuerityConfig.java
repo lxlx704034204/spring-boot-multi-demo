@@ -67,7 +67,8 @@ public class WebSecuerityConfig extends WebSecurityConfigurerAdapter {
 		.permitAll()
 		// some exception configure
 		.and()
-		.addFilterAt(new MyBaseFilter("/api/hello/**"), UsernamePasswordAuthenticationFilter.class)
+		//.addFilterAt(new MyBaseFilter("/api/hello/**"),UsernamePasswordAuthenticationFilter.class)                           
+		//.addFilterAfter(new MyBaseFilter("/api/hello/**"), UsernamePasswordAuthenticationFilter.class)
 		.exceptionHandling()
 		.accessDeniedPage("/login")
 		//.authenticationEntryPoint(entryPoint)

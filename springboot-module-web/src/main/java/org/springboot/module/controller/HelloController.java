@@ -3,6 +3,8 @@ package org.springboot.module.controller;
 import org.springboot.module.model.User;
 import org.springboot.module.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +29,10 @@ public class HelloController {
 	@GetMapping(value = "")
 	public String hello() {
 		System.out.println("rest request hello...");
+		int size =  SecurityContextHolder.getContext().getAuthentication().getAuthorities().size();
+		System.out.println(size);
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("#### userDetails.getUsername(): " + userDetails.getUsername());
 		return "hello world";
 	}
 
