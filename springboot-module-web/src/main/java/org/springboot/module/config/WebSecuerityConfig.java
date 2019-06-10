@@ -3,6 +3,7 @@ package org.springboot.module.config;
 import java.util.Arrays;
 
 import org.springboot.module.security.MyBaseFilter;
+import org.springboot.module.security.MyCustomDsl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -67,12 +68,14 @@ public class WebSecuerityConfig extends WebSecurityConfigurerAdapter {
 		.permitAll()
 		// some exception configure
 		.and()
-		//.addFilterAt(new MyBaseFilter("/api/hello/**"),UsernamePasswordAuthenticationFilter.class)                           
-		//.addFilterAfter(new MyBaseFilter("/api/hello/**"), UsernamePasswordAuthenticationFilter.class)
+		//.addFilterBefore(new MyBaseFilter(), UsernamePasswordAuthenticationFilter.class)                           
+		//.addFilterAt(new MyBaseFilter(), UsernamePasswordAuthenticationFilter.class)                           
+		//.addFilterAfter(new MyBaseFilter(), UsernamePasswordAuthenticationFilter.class)
 		.exceptionHandling()
 		.accessDeniedPage("/login")
 		//.authenticationEntryPoint(entryPoint)
-	
+		//.and().apply(MyCustomDsl.customDsl()).flag(true)
+		//.disable()
 
 		;
 	}
