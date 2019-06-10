@@ -74,7 +74,8 @@ public class WebSecuerityConfig extends WebSecurityConfigurerAdapter {
 		.exceptionHandling()
 		.accessDeniedPage("/login")
 		//.authenticationEntryPoint(entryPoint)
-		//.and().apply(MyCustomDsl.customDsl()).flag(true)
+		.and().apply(MyCustomDsl.customDsl())
+		//.flag(true)
 		//.disable()
 
 		;

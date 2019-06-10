@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -20,6 +21,7 @@ public class MyBaseFilter extends AbstractAuthenticationProcessingFilter {
 	
 	public MyBaseFilter() {
 		 super(new AntPathRequestMatcher("/login","POST"));
+		 //super(new AntPathRequestMatcher("/api/hello/*"));
 		 System.out.println("### MyBaseFilter.MyBaseFilter()");
 		 authenticationManager = new MyBaseAuthenticationManager();
 		 //super.setAuthenticationManager(authenticationManager);
@@ -57,10 +59,15 @@ public class MyBaseFilter extends AbstractAuthenticationProcessingFilter {
 		System.out.println("userName: " + username);
 		System.out.println("password: " + password);
 		
-		//UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
-		MyBaseAuthentication authRequest = new MyBaseAuthentication(username, password);
-		Authentication authenticate = this.getAuthenticationManager().authenticate(authRequest);
-		System.out.println("authenticate is not null: " + authenticate != null);
+		
+		//MyBaseAuthentication authRequest = new MyBaseAuthentication(username, password);
+		//Authentication authenticate = this.getAuthenticationManager().authenticate(authRequest);
+		//System.out.println("authenticate is not null: " + authenticate != null);
+		//if(authenticate == null) {
+		//	authenticate = new MyBaseAuthentication("cch", "123456"); 
+		//}
+		Authentication authenticate = new UsernamePasswordAuthenticationToken("cch", "123456");
+		//Authentication authenticate = new MyBaseAuthentication("cch", "123456");
 		return authenticate;
 	}
 
