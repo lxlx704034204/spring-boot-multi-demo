@@ -14,7 +14,7 @@ The following guides illustrate how to use some features concretely:
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 
-# 出处： https://www.cnblogs.com/jcjssl/p/9380309.html
+* [出处： https://www.cnblogs.com/jcjssl/p/9380309.html]()
 
 ![Image](https://github.com/lxlx704034204/spring-boot-multi-demo/blob/master/模块依赖关系图.png)
 ![Image text](https://github.com/lxlx704034204/spring-boot-multi-demo/blob/master/模块依赖关系图.png)
